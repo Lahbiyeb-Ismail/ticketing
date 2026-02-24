@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 
-import httpStatus, { status } from 'http-status';
+import { CustomError } from '../errors';
 
 /**
  *
@@ -16,7 +16,7 @@ import httpStatus, { status } from 'http-status';
  * Calls the next middleware function in the stack.
  *
  */
-export function globalErrorHandler(
+export async function globalErrorHandler(
   err: Error,
   _req: Request,
   res: Response,
@@ -28,11 +28,20 @@ export function globalErrorHandler(
     console.log(`Error Stack: ${err.stack}`);
   }
 
-  res.status(500).json({
+  if (err instanceof CustomError) {
+    return res.status(err.statusCode).json({
+      success: false,
+      statusCode: err.statusCode,
+      errorName: err.errorName,
+      errors: err.serializeErrors(),
+    });
+  }
+
+  res.status(400).json({
     success: false,
-    statusCode: 500,
-    name: err.name,
-    message: err.message,
+    statusCode: 400,
+    errorName: 'BAD_REQUEST',
+    errors: [{ message: err.message }],
   });
 
   next();
