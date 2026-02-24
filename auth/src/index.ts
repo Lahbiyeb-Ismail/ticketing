@@ -1,4 +1,3 @@
-// import 'express-async-errors';
 import express from 'express';
 
 import {
@@ -7,7 +6,7 @@ import {
   signOutRouter,
   signUpRouter,
 } from './routes';
-import { globalErrorHandler } from './middlewares';
+import { globalErrorHandler, notFoundRoute } from './middlewares';
 
 const app = express();
 
@@ -17,6 +16,8 @@ app.use(currentUserRouter);
 app.use(signInRouter);
 app.use(signOutRouter);
 app.use(signUpRouter);
+
+app.use(notFoundRoute);
 
 app.use(globalErrorHandler);
 
