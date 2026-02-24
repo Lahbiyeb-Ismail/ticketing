@@ -2,6 +2,7 @@ import type { NextFunction, Request, Response } from 'express';
 import type { ZodType } from 'zod';
 
 import { ZodError } from 'zod';
+import { RequestValidationError } from '../errors';
 
 /**
  * Defines the schema for validating different parts of an HTTP request.
@@ -63,9 +64,7 @@ export function requestValidator<
           message: err.message,
         }));
 
-        throw new Error(
-          `Validation error in ${errors[0]?.field} field: ${errors[0]?.message}`
-        );
+        throw new RequestValidationError(errors);
       } else {
         throw new Error(`Unexpected error during request validation: ${error}`);
       }
