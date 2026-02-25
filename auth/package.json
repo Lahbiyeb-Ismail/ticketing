@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev src/index.ts"
+    "start": "ts-node-dev --poll src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,7 @@
   "dependencies": {
     "express": "^5.2.1",
     "http-status": "^2.1.0",
+    "mongoose": "^9.2.2",
     "zod": "^4.3.6"
   },
   "devDependencies": {
