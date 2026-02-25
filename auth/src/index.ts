@@ -7,6 +7,7 @@ import {
   signUpRouter,
 } from './routes';
 import { globalErrorHandler, notFoundRoute } from './middlewares';
+import mongoose from 'mongoose';
 
 const app = express();
 
@@ -21,6 +22,17 @@ app.use(notFoundRoute);
 
 app.use(globalErrorHandler);
 
-app.listen(3000, () => {
-  console.log('Auth service is running on port 3000');
-});
+const bootstrapAuthApp = async () => {
+  try {
+    await mongoose.connect('mongodb://auth-mongo-srv:27017/auth');
+    console.log('Connected to MongoDB');
+  } catch (err) {
+    console.error('Failed to connect to MongoDB', err);
+  }
+ 
+  app.listen(3000, () => {
+    console.log('Auth service is running on port 3000');
+  });
+};
+
+bootstrapAuthApp();
