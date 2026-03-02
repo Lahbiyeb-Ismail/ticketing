@@ -7,7 +7,7 @@ import {
   signUpRouter,
 } from './routes';
 import { globalErrorHandler, notFoundRoute } from './middlewares';
-import mongoose from 'mongoose';
+import { prisma } from './lib/prisma';
 
 const app = express();
 
@@ -24,12 +24,13 @@ app.use(globalErrorHandler);
 
 const bootstrapAuthApp = async () => {
   try {
-    await mongoose.connect('mongodb://auth-mongo-srv:27017/auth');
+    await prisma.$connect();
     console.log('Connected to MongoDB');
   } catch (err) {
     console.error('Failed to connect to MongoDB', err);
+    process.exit(1);
   }
- 
+
   app.listen(3000, () => {
     console.log('Auth service is running on port 3000');
   });
