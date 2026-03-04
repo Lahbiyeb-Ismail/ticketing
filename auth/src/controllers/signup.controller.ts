@@ -1,18 +1,23 @@
 import type { Request, Response } from 'express';
+import { User } from '../models';
+import { BadRequestError } from '../errors';
 
 async function signupController(req: Request, res: Response) {
-  // Extract user details from the request body
   const { email, password } = req.body;
 
-  console.log('Received signup request with email:', email);
-  console.log('Received signup request with password:', password);
+  const existingUser = await User.findOne({ email });
 
-  // Here you would typically add logic to create a new user in your database
-  // For example:
-  // const newUser = await User.create({ email, password });
+  if (existingUser) throw new BadRequestError('Email already in use.');
 
-  // For this example, we'll just return a success message
-  res.status(201).send({ message: 'User signed up successfully!' });
+  const user = User.build({ email, password });
+  await user.save();
+
+  res.status(201).send({
+    message: 'User signed up successfully!',
+    data: {
+      user,
+    },
+  });
 }
 
 export { signupController };
