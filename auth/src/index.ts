@@ -7,7 +7,7 @@ import {
   signUpRouter,
 } from './routes';
 import { globalErrorHandler, notFoundRoute } from './middlewares';
-import { prisma } from './lib/prisma';
+import { connectToMongo } from './lib/mongoose';
 
 const app = express();
 
@@ -24,7 +24,7 @@ app.use(globalErrorHandler);
 
 const bootstrapAuthApp = async () => {
   try {
-    await prisma.$connect();
+    await connectToMongo();
     console.log('Connected to MongoDB');
   } catch (err) {
     console.error('Failed to connect to MongoDB', err);
