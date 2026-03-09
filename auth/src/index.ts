@@ -1,4 +1,5 @@
 import express from 'express';
+import cookieSession from 'cookie-session';
 
 import {
   currentUserRouter,
@@ -12,6 +13,14 @@ import { connectToMongo } from './lib/mongoose';
 const app = express();
 
 app.use(express.json());
+app.set('trust proxy', true);
+
+app.use(
+  cookieSession({
+    signed: false,
+    secure: process.env.NODE_ENV === 'production',
+  })
+);
 
 app.use(currentUserRouter);
 app.use(signInRouter);
