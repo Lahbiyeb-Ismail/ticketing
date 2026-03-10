@@ -1,5 +1,5 @@
 import express from 'express';
-import { requestValidator } from '../middlewares';
+import { validateRequest } from '../middlewares';
 import { signupSchema } from '../validation-schemas';
 import { signupController } from '../controllers';
 
@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post(
   '/api/users/signup',
-  requestValidator({ body: signupSchema }),
+  validateRequest({ body: signupSchema }),
   signupController
 );
 

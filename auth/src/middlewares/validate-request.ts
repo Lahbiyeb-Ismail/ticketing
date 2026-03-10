@@ -38,7 +38,7 @@ interface RequestSchema<
  * @throws {ZodError} If validation fails, responds with a 400 status and a list of validation errors.
  * @throws {Error} If an unexpected error occurs, responds with a 500 status and an error message.
  */
-export function requestValidator<
+export function validateRequest<
   B extends ZodType,
   P extends ZodType,
   Q extends ZodType,
