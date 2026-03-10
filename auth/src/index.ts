@@ -32,6 +32,10 @@ app.use(notFoundRoute);
 app.use(globalErrorHandler);
 
 const bootstrapAuthApp = async () => {
+  if (!process.env.JWT_KEY) {
+    throw new Error('JWT_KEY environment variable is not defined');
+  }
+
   try {
     await connectToMongo();
     console.log('Connected to MongoDB');
