@@ -1,9 +1,14 @@
-import express from "express";
+import express from 'express';
+import { validateRequest } from '../middlewares';
+import { signinSchema } from '../validation-schemas';
+import { signinController } from '../controllers';
 
-const router = express.Router()
+const router = express.Router();
 
-router.post("/api/users/signin", (req, res) => {
-    res.send("Sign In Route");
-});
+router.post(
+  '/api/users/signin',
+  validateRequest({ body: signinSchema }),
+  signinController
+);
 
-export { router as signInRouter }
+export { router as signInRouter };
