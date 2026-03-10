@@ -1,9 +1,8 @@
-import express from "express";
+import express from 'express';
+import { currentUserController } from '../controllers';
 
-const router = express.Router()
+const router = express.Router();
 
-router.get("/api/users/current-user", (req, res) => {
-    res.send({ currentUser:  null })
-});
+router.get('/api/users/current-user', currentUserController);
 
-export { router as currentUserRouter }
+export { router as currentUserRouter };
