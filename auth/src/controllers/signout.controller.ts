@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 
 async function signoutController(req: Request, res: Response) {
-  req.session = null;
+  req.session = {};
 
   res.status(200).send({
     message: 'User signed out successfully',

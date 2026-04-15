@@ -1,8 +1,8 @@
+import { BadRequestError } from '@lhticketing/common';
 import type { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
 import { User } from '../models';
-import { BadRequestError } from '../errors';
 
 async function signupController(req: Request, res: Response) {
   const { email, password } = req.body;

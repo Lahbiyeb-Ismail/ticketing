@@ -1,6 +1,6 @@
 import express from 'express';
 import { currentUserController } from '../controllers';
-import { currentUserMiddleware } from '../middlewares';
+import { currentUserMiddleware } from '@lhticketing/common';
 
 const router = express.Router();
 

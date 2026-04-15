@@ -1,8 +1,8 @@
+import { BadRequestError } from '@lhticketing/common';
 import type { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
 import { User } from '../models';
-import { BadRequestError } from '../errors';
 import { Password } from '../services';
 
 async function signinController(req: Request, res: Response) {

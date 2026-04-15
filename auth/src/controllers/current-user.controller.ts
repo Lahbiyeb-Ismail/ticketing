@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 
-import { NotAuthorizedError } from '../errors';
+import { NotAuthorizedError } from '@lhticketing/common';
 
 async function currentUserController(req: Request, res: Response) {
   if (!req.currentUser) {

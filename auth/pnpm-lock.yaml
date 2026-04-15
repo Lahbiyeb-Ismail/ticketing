@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@lhticketing/common':
+        specifier: ^1.0.2
+        version: 1.0.2
       cookie-session:
         specifier: ^2.1.1
         version: 2.1.1
@@ -359,6 +362,9 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
+
+  '@lhticketing/common@1.0.2':
+    resolution: {integrity: sha512-ml/E4/LV8gZwvqDe4HC5VGU9Q9bx/ptPH2fkBBGj5gEYBhZUW7nPjuCHBn0C5Aj/xHUBs8A3apJyiagCrEQeeg==}
 
   '@mongodb-js/saslprep@1.4.6':
     resolution: {integrity: sha512-y+x3H1xBZd38n10NZF/rEBlvDOOMQ6LKUTHqr8R9VkJ+mmQOYtJFxIlkkK8fZrtOiL6VixbOBWMbZGBdal3Z1g==}
@@ -2653,6 +2659,16 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@lhticketing/common@1.0.2':
+    dependencies:
+      cookie-session: 2.1.1
+      express: 5.2.1
+      http-status: 2.1.0
+      jsonwebtoken: 9.0.3
+      zod: 4.3.6
+    transitivePeerDependencies:
+      - supports-color
 
   '@mongodb-js/saslprep@1.4.6':
     dependencies:

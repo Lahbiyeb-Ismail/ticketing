@@ -1,5 +1,6 @@
 import express from 'express';
 import cookieSession from 'cookie-session';
+import { globalErrorHandler, notFoundRoute } from '@lhticketing/common';
 
 import {
   currentUserRouter,
@@ -7,7 +8,6 @@ import {
   signOutRouter,
   signUpRouter,
 } from './routes';
-import { globalErrorHandler, notFoundRoute } from './middlewares';
 
 const app = express();
 

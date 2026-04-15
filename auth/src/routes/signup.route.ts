@@ -1,5 +1,5 @@
 import express from 'express';
-import { validateRequest } from '../middlewares';
+import { validateRequest } from '@lhticketing/common';
 import { signupSchema } from '../validation-schemas';
 import { signupController } from '../controllers';
 
