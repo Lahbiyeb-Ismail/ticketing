@@ -1,0 +1,23 @@
+{
+  "name": "@lhticketing/common",
+  "version": "1.0.1",
+  "description": "",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": [
+    "build/**/*"
+  ],
+  "scripts": {
+    "clean": "del ./build/*",
+    "build": "pnpm clean && tsc",
+    "publish": "npm version patch && pnpm build && npm publish"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.29.2",
+  "devDependencies": {
+    "del-cli": "^7.0.0",
+    "typescript": "^6.0.2"
+  }
+}
