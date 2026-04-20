@@ -1,13 +1,17 @@
 import { app } from './app';
-import { connectToMongo } from './lib/mongoose';
+import { connectToMongo } from '@lhticketing/common';
 
 const bootstrapAuthApp = async () => {
   if (!process.env.JWT_KEY) {
     throw new Error('JWT_KEY environment variable is not defined');
   }
 
+  if (!process.env.MONGO_URI) {
+    throw new Error('MONGO_URI environment variable is not defined');
+  }
+
   try {
-    await connectToMongo();
+    await connectToMongo(process.env.MONGO_URI);
     console.log('Connected to MongoDB');
   } catch (err) {
     console.error('Failed to connect to MongoDB', err);
