@@ -12,6 +12,14 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: ismaillhb/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
 deploy:
   kubectl:
     manifests:
