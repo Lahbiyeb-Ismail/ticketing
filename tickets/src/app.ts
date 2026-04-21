@@ -1,6 +1,17 @@
 import express from 'express';
 import cookieSession from 'cookie-session';
-import { globalErrorHandler, notFoundRoute } from '@lhticketing/common';
+import {
+  globalErrorHandler,
+  notFoundRoute,
+  currentUserMiddleware,
+} from '@lhticketing/common';
+
+import {
+  createTicketRouter,
+  getAllTicketsRouter,
+  getTicketRouter,
+  updateTicketRouter,
+} from './routes';
 
 const app = express();
 
@@ -13,6 +24,13 @@ app.use(
     secure: process.env.NODE_ENV !== 'test',
   })
 );
+
+app.use(currentUserMiddleware);
+
+app.use(createTicketRouter);
+app.use(getTicketRouter);
+app.use(getAllTicketsRouter);
+app.use(updateTicketRouter);
 
 app.use(notFoundRoute);
 
